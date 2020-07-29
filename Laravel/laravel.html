@@ -1,0 +1,37 @@
+<h2>What is Laravel?</h2>
+<ul>
+    <li>Framework for creating php websites</li>
+    <li>Works well with MySQL databases</li>
+    <li>Includes useful features such as (blade templating engine, auth (authentication module), eloquent (used to query SQL databases))</li>
+</ul>
+<p>Uses Model View Controller pattern</p>
+<ul>
+    <li>Model = database</li>
+    <li>View = rendered webpage</li>
+    <li>Controller = The thing in the middle that takes the data from the database and converts it to the webpage</li>
+</ul>
+<h3>Setup</h3>
+<p>Need to install:</p>
+<ul>
+    <li>xampp - for test server on localhost</li>
+    <li>composer - a package or dependency manager for php that installs php packages into projects (similar to npm in node) </li>
+</ul>
+<p>Close terminal and vscode and reopen</p>
+<p>Type composer -V into terminal.  If don't get version number not installed correctly.</p>
+<p>Type composer global require laravel/installer</p>
+<p>Navigate to folder where you want to create the Laravel app and type laravel new nameofproject</p>
+<p>Once installed cd into newly created project folder and type php artisan serve</p>
+<p>This spins up a dev server to preview the project.</p>
+<h3>How does a Laravel site work?</h3>
+<p>Request from url comes in</p>
+<p>If a route file matches the Url requested, this route file will tell the browser what to do next. </p>
+<p>This could be something like, modify a database in some way, retrieve data or display a page.</p>
+<p>Then the view is compiled and returned to the browser.</p>
+<ul>
+    <li>Users page requested in url</li>
+    <li>Route file matching users runs code to get users list from database and then render it using a view to a page for the user.</li>
+</ul>
+<h3>Laravel files</h3>
+<h4>routes/web.php</h4>
+<p>This file shows all potential urls with their return views that are in the resource/views folder.</p>
+<p>These views are templates, so think of them as the page layout with placeholders for other things in them.</p>
