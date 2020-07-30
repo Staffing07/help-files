@@ -1,0 +1,50 @@
+<h2>Query parameters</h2>
+<p>Can be used to detect where a user has visited the site from.</p>
+<code>pizzahouse.com/?source=facebook&campaign=half_price_promo</code>
+<p>In above example, we have an advert on facebook for our store that directs users to the website via this query parameter.</p>
+<p>? denotes beginning of query string</p>
+<p>& denotes another parameter in string</p>
+<p>Essentitally the user will end up at the same site, however the server can detect the query parameters in the url to tailor a specific experience based upon what the query parameter was</p>
+<p>For example, our site would now give users half price pizzas because they visited via this url.</p>
+<br>
+<h3>Example</h3>
+<code>
+Route::get('/recipes', function () {
+    // get data from database
+    // pass data as an array into the view
+    $pizzas = [
+        'type' => 'hawaiian',
+        'base' => 'deep pan',
+        'cuisine' => 'Italian'
+    ];
+
+    $name = request('name');
+
+    return view('recipes', [
+        'pizzas' => $pizzas,
+        'name' => $name
+    ]);
+});
+</code>
+
+<p>$name = request('name');</p>
+<p>The url request is attached using this line.</p>
+<p>Where the url includes a "name" parameter within the recipes route /recipes?name=fred</p>
+<p>The value of name will be stored in the $name variable.</p>
+<p>This $name variable can then be referenced in the view.</p>
+<p>return view('recipes', [
+        'pizzas' => $pizzas,
+        'name' => $name
+    ]);</p>
+<p>Then in the view file you just need to include</p>
+<p>{{ $name }}</p>
+
+<h3>Example 2</h3>
+<h4>Routes file</h4>
+<code>return view('recipes', [
+        'pizzas' => $pizzas,
+        'name' => request('name'),
+        'age' => request('age')
+    ]);</code>
+<h4>View file</h4>
+<code><p>{{ $name }} {{ $age }}</p></code>

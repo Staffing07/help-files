@@ -1,0 +1,53 @@
+<h2>Controllers</h2>
+<p>Rather than handling what happens with the data directly in the routes file, it is cleaner and easier to manage to have a controller setup to handle requests in different ways.</p>
+<p>Can either create the file manually or use artisan</p>
+<p>In terminal type...</p>
+<p>php artisan make:controller NameofController</p>
+<p>The controller is placed in app/http/Controllers</p>
+<p>Create functions in the class</p>
+<br>
+<br>
+<br>
+<h3>Full example of a linking route -> controller -></h3>
+<h4>Route (web.php)</h4>
+<code>
+Route::get('/recipes', 'RecipeController@index');
+
+Route::get('/recipes/{id}', 'RecipeController@show');
+</code>
+<p>The route will fire when the matching url is requested by the browser.  The 'RecipeController is the name of the controller and the @index or @show is the action within that controller.</p>
+
+<h4>Contoller app/http/Controllers</h4>
+<code>
+class RecipeController extends Controller
+{
+    public function index()
+    {
+        // get data from database
+        // pass data as an array into the view
+        $pizzas = [
+            'type' => 'hawaiian',
+            'base' => 'deep pan',
+            'cuisine' => 'Italian'
+        ];
+
+        return view('recipes', [
+            'pizzas' => $pizzas,
+        ]);
+    }
+
+    public function show($id)
+    {
+        // use the $id variable to query the db for a record
+        return view('details', ['id' => $id]);
+    }
+}
+</code>
+<p>Some of the controller file is created automatically when created by artisan.</p>
+<p>Index and show are the names of the actions that link back to the routes.</p>
+<p>The return view('recipes') tells the code which view file to open e.g. this one is resources/views/recipes and resources/views/details</p>
+
+
+
+
+

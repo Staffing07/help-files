@@ -1,0 +1,68 @@
+<h2>What is Balde?</h2>
+<p>Blade is a php templating engine designed to be able to display data as html.</p>
+<p>You do not have to use blade in a Laravel project, yopu can use normal php but Blade does make things easier.</p>
+<h3>Example of Blade syntax</h3>
+<h4>Simple if statement</h4>
+    <code>@if($price > 15)
+    <p>This recipe is expensive</p>
+    @endif</code>
+<p>The @ means we are using blade to do something.</p>
+<p>Here an if statement is used to check whether the $price variable (from the routes file) is over £15</p>
+<p>If it is the text in the p tags will display.</p>
+ <p>{{ $type }} - {{ $base }} - {{ $cuisine }}</p>
+
+                <code>@if($type == 'hawaiian')
+                    <p>Yuck pineapple on a pizza</p>
+                @elseif($type == 'pepperoni')
+                    <p>Good choice</p>
+                    @else
+                    <p>What you having then?</p>
+                @endif</code>
+
+
+<h4>Unless</h4>
+<code>@unless($base == 'cheesy crust')
+    <p>You don't have a cheesy crust</p>
+</code>
+<p>The p text will show unless the $base variable was equal to cheesy crust.</p>
+
+<h4>Regular php</h4>
+<p>You can also use php if blade does not include a solution.</p>
+<code>
+@php 
+$name = 'david';
+echo($name);
+@endphp
+</code>
+
+<h4>Loops</h4>
+<code>
+@for($i = 0; $i < 5; $i++)
+<p>the value of i is {{ $i }}</p>
+@endfor</code>
+<p>Will print a loop of 1 - 4.</p>
+
+<h4>Loop example</h4>
+<p>In routes file code variable and array</p>
+<code>
+$pizzas = [
+    ['type' => 'hawaiian', 'base' => 'cheesy crust'],
+    ['type' => 'volcano', 'base' => 'garlic crust'],
+    ['type' => 'veg supreme', 'base' => 'thin & crispy crust']</code>
+    <p>Then in view file need</p>
+
+    <p><code>@for($i = 0; $i < count($pizzas); $i++)
+    <p>{{ $pizzas[$i]['type'] }}</p>
+    @endfor
+    </code></p>
+    <p>This will loop through each pizza and grab the typeof each pizza.</p>
+
+    <h4>Foreach loop</h4>
+    <code>
+    @foreach($pizzas as pizza
+    <div>
+    {{ $loop->index }} {{$pizza['type'] }} - {{ $pizza['base'] }}
+    </div>
+    </code>
+    <p>This will grab and show everything.  {{ $loop->index }} insert the indes number of the item from the array</p>
+

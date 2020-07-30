@@ -1,0 +1,55 @@
+<h3>How does a Laravel site work?</h3>
+<p>Request from url comes in</p>
+<p>If a route file matches the Url requested, this route file will tell the browser what to do next. </p>
+<p>This could be something like, modify a database in some way, retrieve data or display a page.</p>
+<p>Then the view is compiled and returned to the browser.</p>
+<ul>
+    <li>Users page requested in url</li>
+    <li>Route file matching users runs code to get users list from database and then render it using a view to a page for the user.</li>
+</ul>
+<h3>Laravel files</h3>
+<h4>routes/web.php</h4>
+<p>This file shows all potential urls with their return views that are in the resource/views folder.</p>
+<p>These views are templates, so think of them as the page layout with placeholders for other things in them.</p>
+<code>
+    Route::get('/', function () {
+        return view('welcome');
+    });
+</code>
+<p>This route will trigger the homepage view.</p>
+<p>The 'welcome' accesses the resources/views/welcome blade layout</p>
+<code>
+    Route::get('/recipes', function () {
+        return view('welcome');
+    });
+</code>
+<p>This route will trigger the recipes view.</p>
+<h4>Route return types</h4>
+<p>You can return different types</p>
+<code>
+    Route::get('/recipes', function () {
+        return 'recipes';
+    });
+</code>
+<p>This would return a page showing plain text/html with the word recipes rather than using a view file.</p>
+<code>
+    Route::get('/recipes', function () {
+        return ['name' => 'tomato soup', 'ingredient' => 'tomatoes'];
+    });
+</code>
+<p>This would return a json string object.</p>
+<h4>Using blade to pass data from the route file to the view</h4>
+<code>
+    Route::get('/recipes', function () {
+        return view('recipes', ['cuisine' => 'Indian' ]);
+    });
+</code>
+<p>The above example will return the recipes view when the user visits /recipes.  We are also passing an array through to the view using the variable 'cuisine'</p>
+<p>In the view file we could then type {{ $cuisine }} to pull that data value into the view file</p>
+<p>The double curly braces also escapes any special characters.</p>
+<p>A more complex array</p>
+<code>
+$pizzas = [
+    ['type' => 'hawaiian', 'base' => 'cheesy crust'],
+    ['type' => 'volcano', 'base' => 'garlic crust'],
+    ['type' => 'veg supreme', 'base' => 'thin & crispy crust']</code>
