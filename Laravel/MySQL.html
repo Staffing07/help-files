@@ -16,5 +16,39 @@
 <h3>Tell Laravel project about the database </h3>
 <p>Go into .env file and add database name to line that says DB_DATABASE</p>
 <p>Create username and password if you want to</p>
+<h3>Migrations</h3>
+<p>Migration file allows tables & columsn to be created from the code rather than manually using MySQL Admin</p>
+<p>database folder/migrations shows the migration files</p>
+<p>Inside the folder, each migration is a class and holds 2 functions</p>
+<p>The first function (upmethod) defines the structure of the table and its columns and datatypes</p>
+<p>The second function (down method) allows the migration to be rolled back if necessary</p>
+<h3>Creating your own migration</h3>
+<p>php artisan make:migration create_your_tablename</p>
+<p>This will add the basic table.</p>
+<p>Now need to decide what columns you need and what datatypes they are and add them into the new migration file created in the above folder.</p>
+<p>Once added type php artisan migrate</p>
+<p>This runs the up function in each of the migration files</p>
+<h3>Adding another column later on</h3>
+<h4>If in live production - safe option</h4>
+<p>php artisan make:migration add_columnname_to_tablename_table</p>
+<p>Care the naming convention here is importing</p>
+<p>Example</p>
+<p>If the existing table is called pizzas and the new column to add is called price</p>
+<p>php artisan make:migration add_price_to_pizzas_table</p>
+<p>This will create a new migration file and you will be able to see that the cli command has created a code boilerplate using the table name - check that this matches.</p>
+<p>Now you can add your new column code in the up function</p>
+<p>Can then run php artisan migrate:status this should show your one new column in the down state.</p>
+<p>php artisan migrate</p>
+<p>Your new column should now have been added</p>
+<p>php artisan migrate:status should show everything in the up state</p>
+<p>Note the batch column in the status command.  Rollback will only rollback the highest status number.  If you need to rollback again to rollback further you can.</p>
+<h4>If in development</h4>
+<p>Can add extra column to code</p>
+<p>Can't run php artisan migrate as the table is in the upstate</p>
+<p>Need to run php artisan migrate:rollback to put the table into a down state</p>
+<p>Can see this by going to php admin, the table will not be there or type php artisane migrate:status</p>
+<p>Now type php artisan migrate.  The table will be pushed to the up state with the new column included</p>
+<p>This method is dangerous in live production as it will delete your data.</p>
+
 
 
